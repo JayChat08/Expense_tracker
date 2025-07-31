@@ -1,26 +1,40 @@
-* {
-  box-sizing: border-box;
+:root {
+  --primary-blue: #288cfa;
+  --primary-green: #2E865F;
+  --income-green: #C6F4D6;
+  --expense-red: #FF7043;
+  --bg-light: #f5f5f5;
+  --bg-soft: #d7ccc8;
+  --text-dark: #333333;
 }
 
 body {
-  background: #f2f2f2;
+  background: var(--bg-light);
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #f5f5f5;
 }
 
 .container {
-  max-width: 400px;
-  margin: 30px auto;
-  padding: 20px;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px #ccc;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-h2, h3 {
+h2 {
+  color: var(--primary-blue);
   text-align: center;
-  margin-bottom: 10px;
+  font-size: 2rem;
 }
 
 .balance {
@@ -28,82 +42,132 @@ h2, h3 {
   margin: 20px 0;
 }
 
+.balance h1 {
+  font-size: 2.5rem;
+  color: var(--primary-green);
+}
+
 .inc-exp-container {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
+  gap: 10px;
+  background: #f0f1f5;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
-.inc-exp-container > div {
-  width: 48%;
-  background: #f9f9f9;
-  padding: 10px;
-  border-radius: 5px;
+.inc-exp-container div {
+  flex: 1;
   text-align: center;
 }
 
-.money {
-  font-size: 1.2rem;
+.money.plus {
+  color: #2E865F;
+  font-weight: bold;
 }
 
-.plus {
-  color: green;
-}
-
-.minus {
-  color: red;
+.money.minus {
+  color: #FF7043;
+  font-weight: bold;
 }
 
 .list {
   list-style: none;
-  padding: 0;
+  max-height: 150px;
+  overflow-y: auto;
   margin-bottom: 20px;
+  padding-right: 10px;
 }
 
 .list li {
+  background: #f8f9fb;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-right: 6px solid;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  margin: 8px 0;
-  border-right: 5px solid;
-  background: #f1f1f1;
-  border-radius: 5px;
+  align-items: center;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
 .list li.plus {
-  border-color: green;
+  border-color: #2E865F;
 }
 
 .list li.minus {
-  border-color: red;
+  border-color: #FF7043;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .delete-btn {
-  background: crimson;
-  color: white;
+  background: transparent;
   border: none;
+  color: #c0392b;
+  font-weight: bold;
+  font-size: 1.1rem;
   cursor: pointer;
-  padding: 2px 8px;
-  border-radius: 4px;
+}
+
+input:focus {
+  border: 2px solid var(--primary-blue);
+  outline: none;
+  transition: border 0.2s ease-in-out;
 }
 
 .form-control {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-input[type="text"], input[type="number"] {
+input, select {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
 }
 
 .btn {
   width: 100%;
-  padding: 10px;
-  background: black;
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  background: var(--primary-blue);
   color: white;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 5px;
+  transition: background 0.3s ease, transform 0.1s;
+}
+
+.btn:hover {
+  background: #1f70cc;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.dark-mode .container {
+  background: #1e1e1e;
+}
+
+.dark-mode input,
+.dark-mode select {
+  background: #333;
+  color: #f5f5f5;
+  border-color: #666;
+}
+
+.dark-mode .list li {
+  background: #2a2a2a;
+}
+
+.dark-mode .inc-exp-container h4 {
+  color: #18176e; /* or any light shade that contrasts well */
 }
